@@ -1,3 +1,15 @@
+### draw the geographic distribution of samples
+feature <- as.matrix(read.table('metadata_full_MMPRNT_G5.LC_LUX_trunc_rar_016017.txt',head=T,sep='\t',stringsAsFactors=F))
+lux <- feature[feature[,3]=='LUX',]
+lc <- feature[feature[,3]=='LC',]
+pdf('Geo_location.pdf',width=10,height=5)
+par(mfrow=c(1,2))
+plot(as.numeric(lux[,5]),as.numeric(lux[,6]),col = c('blue','red')[as.factor(lux[,4])],pch=20,main='LUX')
+legend(4703750,627250,legend=unique(lux[,4]),col= c('blue','red'), pch=20,cex=0.8)	
+plot(as.numeric(lc[,5]),as.numeric(lc[,6]),col = c('blue','red')[as.factor(lc[,4])],pch=20,,main='LC')
+legend(4906340,643660,legend=unique(lux[,4]),col= c('blue','red'), pch=20,cex=0.8)	
+dev.off()
+
 Loci <- function(x,y){
 	loci <- "NaN"
 	if(x<4703750) loci <- 'LUX_4'
